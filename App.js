@@ -1,18 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-const TitleComponent = () => {
-  return <h1 id="title">Hey here!</h1>;
-};
-const HeadingComponent = () => {
-  return (
-    <>
-      <TitleComponent />
-      <h2 id="heading">Hello react!</h2>
-    </>
-  );
-};
+import Header from "./src/Header";
+import Body from "./src/Body";
+import Footer from "./src/Footer";
+const AppLayout = () => (
+  <>
+    <Header></Header>
+    <Body></Body>
+    <Footer></Footer>
+  </>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent />);
+root.render(<AppLayout></AppLayout>);
