@@ -1,5 +1,6 @@
 import starImage from "../icons/star_347025.png";
 import { IMAGE_URL } from "../utils/constants";
+//comments
 const RestroCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRatingString, areaName } =
     props.restroListData;
