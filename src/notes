@@ -1,0 +1,95 @@
+Let's get hooked
+
+UI update based on varaible value changes. It is not possible with normal javascript varaible.
+
+- To make it possible, we require super powerful variable called 'state variable'
+
+#React hooks
+
+- Normal JS utility function
+  useState()
+  It is a utility function available in react.
+  If we declare useState, we are telling the react component to 'remember someting'
+
+Syntax:
+import {useState} from 'react'
+const [variableName,setvariableName] = useState(defaultValue);
+where variableName is for assigning default value to a state variable.
+And where setvariableName is for updating state variable
+In conclusion, whenever the state varaible changes, the react will re-render the components
+
+\*\* why react is so fast?
+React is good at DOM manipulation. It keeps sync the data layer with the UI layer.
+
+React uses 'Reconcilation algorithm' also known as 'React fiber'.
+This algorithm is a way of finding the difference between old virtual DOM and new virtual DOM and update the actual DOM.
+virtual DOM is a Object representation of DOM. It is also known as a result of react create element.
+
+Exploring the world:
+
+Ep 06: part 01
+
+Monolith - all components of a application tightly coupled and deployed as a single unit. i.e. In a monolith, the entire application, including the user interface, business logic, and data access layer, is packaged and deployed together.
+/monolith-bookstore
+├── src
+| ├── controllers
+| ├── models
+| ├── views
+| ├── services
+| └── app.js
+├── public
+├── package.json
+└── ...
+
+Microservices architecture - Microservices architecture involves breaking down a large application into smaller, independent services that communicate with each other through well-defined APIs.
+
+Each service has its own codebase, database, and deployment process. They communicate with each other through well-defined APIs. For example, when a user places an order, the Cart Service might communicate with the Order Service to complete the order.
+
+/microservices-bookstore
+├── user-service
+| ├── src
+| ├── ...
+├── catalog-service
+| ├── src
+| ├── ...
+├── cart-service
+| ├── src
+| ├── ...
+├── order-service
+| ├── src
+| ├── ...
+└── ...
+Ep 06: part 02
+There are two ways for API call
+
+When to make API call?
+Page loads -> API -> Render UI with actual data
+Page loads -> Render shimmer UI -> API -> Render UI with actual data (Better UX)
+
+useEffect()
+
+- It is to execute the call back function after the component is rendered.
+- useEffect is a hook in React, a JavaScript library for building user interfaces. 
+- It is used for handling side effects in functional components. 
+- Side effects in the context of React typically include tasks such as data fetching, subscriptions, manual DOM manipulations, and other operations that might affect the state or the UI.
+
+Syntax:
+useEffect(callbackFunction,dependencyArray[])
+
+callbackfunction - It gets executed once the component is rendered.
+
+We are going to use useEffect for achieving the better UX. i.e. render the page, fetch API and render the data.
+
+fetch() - we are going to use the same method as we use for javascript.
+- fetch method is given to us by browsers.
+- fetch will return a promise
+- either we resolve the promise with .then or we can use async await
+
+So finally rendered the data from API using fetch with async await
+----
+EP. 06 part 04
+
+implementation of shimmer UI
+
+EP. 06 part 05
+
