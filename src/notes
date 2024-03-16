@@ -93,3 +93,28 @@ implementation of shimmer UI
 
 EP. 06 part 05
 
+Using ternary operator with return for conditional rendering is also can be done
+
+use of useState with login <-> logout toggle 
+
+The main use of useState is to reload or re-render the component once the state is getting updated
+----
+
+EP. 06 part 06
+
+Search with input fields - using state variable for acheiving it
+
+To overcome input field not editable issue while binding the value to the state variable, we should update the value with setState with onChange event.
+
+using array.filter()
+
+.includes() -> JS function to filter the array as like '%%' in mysql
+
+Post what is react fiber in linked in - prepare the document with diagram for reference.
+
+Successfully filter the data. But there is an issue.
+
+If we do search, the filtered array got listed. If I again do search, it is always referring new filter array instead of old array in react. Because of state variable
+
+EP 06, part 07: overcome above issue (i.e. filter over filter is happening instead of referring original array)
+

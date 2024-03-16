@@ -62,3 +62,8 @@
   border: black;
   background-color: lightgray;
 }
+.login-btn {
+  padding: 0 30px;
+  background-color: chocolate;
+  color: white;
+}

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 const Body = () => {
   let [restroDetails, setRestroDetails] = useState([]);
-
+  let [filteredRestroDetails, setFilteredRestroDetails] = useState([]);
+  let [searchText, setSearchText] = useState("");
   useEffect(() => {
     fetchData();
   }, []);
@@ -16,26 +17,50 @@ const Body = () => {
     setRestroDetails(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setFilteredRestroDetails(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
-  if (restroDetails.length === 0) {
-    return <Shimmer />;
-  }
-  return (
+  return restroDetails.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="Body">
-      <button
-        className="restro-btn"
-        onClick={() => {
-          restroDetails = restroDetails.filter((res) => {
-            return res.info.avgRating > 4.5;
-          });
-          setRestroDetails(restroDetails);
-        }}
-      >
-        Top Rated restaurants
-      </button>
+      <div className="filter-btn">
+        <input
+          type="text"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            restroDetails = restroDetails.filter((res) => {
+              return res.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase());
+            });
+            setFilteredRestroDetails(restroDetails);
+          }}
+        >
+          Search
+        </button>
+        <button
+          className="restro-btn"
+          onClick={() => {
+            restroDetails = restroDetails.filter((res) => {
+              return res.info.avgRating > 4.4;
+            });
+            setFilteredRestroDetails(restroDetails);
+          }}
+        >
+          Top Rated restaurants
+        </button>
+      </div>
+
       <div className="restro-container">
-        {restroDetails.map((restaurant) => (
+        {filteredRestroDetails.map((restaurant) => (
           <RestroCard
             key={restaurant.info.id}
             restroListData={restaurant.info}
