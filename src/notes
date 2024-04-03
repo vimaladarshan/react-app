@@ -267,3 +267,8 @@ Updating state variable
 
 Part 04:
 Life cycle of react class based components
+
+//This will get called once component mounted - usecase of this is to do API calls - Because of better UX. i.e. loading shimmer UI and then load API calls
+componentDidMount(){
+
+}

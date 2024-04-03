@@ -4,6 +4,9 @@ class UserCardClass extends React.Component {
     super(props);
     this.state = { count: 0 };
   }
+  componentDidMount() {
+    console.log("Child did mount called");
+  }
   render() {
     let { count, count1 } = this.state;
     let { name, city } = this.props;
