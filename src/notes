@@ -69,8 +69,8 @@ Page loads -> Render shimmer UI -> API -> Render UI with actual data (Better UX)
 useEffect()
 
 - It is to execute the call back function after the component is rendered.
-- useEffect is a hook in React, a JavaScript library for building user interfaces. 
-- It is used for handling side effects in functional components. 
+- useEffect is a hook in React, a JavaScript library for building user interfaces.
+- It is used for handling side effects in functional components.
 - Side effects in the context of React typically include tasks such as data fetching, subscriptions, manual DOM manipulations, and other operations that might affect the state or the UI.
 
 Syntax:
@@ -81,12 +81,13 @@ callbackfunction - It gets executed once the component is rendered.
 We are going to use useEffect for achieving the better UX. i.e. render the page, fetch API and render the data.
 
 fetch() - we are going to use the same method as we use for javascript.
+
 - fetch method is given to us by browsers.
 - fetch will return a promise
 - either we resolve the promise with .then or we can use async await
 
-So finally rendered the data from API using fetch with async await
-----
+## So finally rendered the data from API using fetch with async await
+
 EP. 06 part 04
 
 implementation of shimmer UI
@@ -95,10 +96,9 @@ EP. 06 part 05
 
 Using ternary operator with return for conditional rendering is also can be done
 
-use of useState with login <-> logout toggle 
+use of useState with login <-> logout toggle
 
-The main use of useState is to reload or re-render the component once the state is getting updated
-----
+## The main use of useState is to reload or re-render the component once the state is getting updated
 
 EP. 06 part 06
 
@@ -118,3 +118,152 @@ If we do search, the filtered array got listed. If I again do search, it is alwa
 
 EP 06, part 07: overcome above issue (i.e. filter over filter is happening instead of referring original array)
 
+EP 6.1
+
+Swiggy API issue resolved
+
+EP 6.2
+
+CORS plugin issue resolved with corsproxy.io
+
+EP 07 : Finding the path
+
+Part 01:
+
+With empty dependency array:
+
+useEffect(() => {
+console.log("use effect called only once after component render");
+}, []);
+
+Without dependency array:
+
+useEffect(() => {
+console.log("Use effect called every time the component render");
+});
+
+With dependency array with value:
+
+useEffect(() => {
+console.log("use effect called after initial render and also called when the dependency array changes");
+}, []);
+
+Part 02:
+
+Never use state variables outside the component
+
+Never use state variables with in condition statement
+
+Part 03:
+
+Creating different route inside the react application
+
+command to install react router
+
+npm i react-router-dom
+
+In the main component, import createBrowserRouter from react-router-dom to add routing configuration as below,
+
+import {createBrowserRouter, routerProvider} from 'react-router-dom'
+const appRouter = createBrowserRouter([
+{
+path:"/",
+element:<Component/>,
+errorElement:<ErrorComponent/>
+},
+{
+path:"/aboutus",
+element:<Component/>,
+errorElement:<ErrorComponent/>
+}
+]);
+
+And import routerProvider from react-router-dom to provide the routing as below
+
+root.render(<RouterProvider router={appRouter}/>);
+
+useRouteError:
+
+It is the hook that could be used to get more details about router error
+
+Part 04:
+
+Keep the header static and change body part to dynamic render
+
+To achieve it, we have to create children routes and use Outlet
+
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
+<Header></Header>
+<Outlet></Outlet>
+<Footer></Footer>
+
+Don't use anchor tag for routing links.
+
+## Instead use Link component from react-router-dom to achieve not reloading whole page, it will route to specific component to render
+
+Two types of routing
+
+1. Client side routing - will not make network call to load the page, just render the component based on routing configuration
+2. Server side routing - will make network call to load the page
+
+---
+
+Part 05:
+
+Loading specific page with params in routing config
+{
+path:"/viewDetails/:id",
+element:<Component/>,
+errorElement:<ErrorComponent/>
+}
+
+useParams is a hook in react, that can be used to get params from routing as below
+
+- import { useParams } from "react-router-dom";
+
+  let inputParams = useParams();
+  inputParams = inputParams.resid;
+
+Ep.08 Part 01 - Lets get classy
+
+Class based components
+
+class ComponentName extends React.Component{
+constructor(props){
+super(props);
+}
+let {inputparams} = this.props
+render(){
+return (<div>
+
+<p>Hello world</p>
+<p>{inputparams.name}</p>
+</div>)
+}
+}
+export default ComponentName;
+
+why include super keyword in constructor
+When we call super() keyword in constructor, it will call the constructor from the parent class and to use properties for the component, we should use super(props)
+
+---
+
+Part 02:
+Create a state variable inside a class based component. It should get intialized inside the constructor
+constructor(props) {
+super(props);
+this.state = { count: 0 };
+}
+
+Part 03:
+Updating state variable
+
+- "Never update state variables directly"
+  Like 'this.state.count = 1'
+  Instead use 'this.setState({
+  count:count+1
+  })'
+
+Part 04:
+Life cycle of react class based components

@@ -60,10 +60,17 @@
   width: 150px;
   height: 250px;
   border: black;
-  background-color: lightgray;
+  background-color: rgb(197, 193, 193);
 }
 .login-btn {
   padding: 0 30px;
   background-color: chocolate;
   color: white;
+}
+.user-card {
+  border: 1px solid black;
+  width: 150px;
+  height: auto;
+  padding: 10px;
+  margin: 10px;
 }
