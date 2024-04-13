@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { HOTEL_MENU_URL } from "../utils/constants";
+import useRestroMenuDetails from "../utils/useRestroMenuDetails";
 const RestroMenu = () => {
-  let [resHotelDetails, setResHotelDetails] = useState([]);
-  let [resMenuDetails, setResMenuDetails] = useState([]);
   let inputParams = useParams();
   inputParams = inputParams.resid;
-  useEffect(() => {
-    restroMenuDetails();
-  }, []);
+  /**
+   * custom hooks for fetching the data
+   */
+  const restroResults = useRestroMenuDetails(inputParams);
 
-  const restroMenuDetails = async () => {
-    const restroData = await fetch(HOTEL_MENU_URL + inputParams);
-    const restroJson = await restroData.json();
-    let restroDetailsHotelData = restroJson.data.cards[2].card.card.info;
-    let restroDetailsMenuData =
-      restroJson.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-    setResHotelDetails(restroDetailsHotelData);
-    setResMenuDetails(restroDetailsMenuData);
-  };
+  let resHotelDetails = restroResults?.hotelData;
+  let resMenuDetails = restroResults?.restroData;
   return (
     <>
       <h1>{resHotelDetails?.name}</h1>
-      {resMenuDetails.map((res) => (
+      {resMenuDetails?.map((res) => (
         <>
           <h2>{res?.card?.card?.title}</h2>
           <ul>
@@ -30,7 +21,6 @@ const RestroMenu = () => {
               res?.card?.card?.itemCards?.map((resCards) => {
                 let resCardsInfo = resCards?.card?.info;
                 let price = resCardsInfo.price / 100;
-                console.log(resCards?.card?.info);
                 return (
                   <>
                     <li>

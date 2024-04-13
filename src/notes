@@ -250,7 +250,7 @@ When we call super() keyword in constructor, it will call the constructor from t
 ---
 
 Part 02:
-Create a state variable inside a class based component. It should get intialized inside the constructor
+Create a state variable inside a class based component. It should get initialized inside the constructor
 constructor(props) {
 super(props);
 this.state = { count: 0 };
@@ -267,8 +267,140 @@ Updating state variable
 
 Part 04:
 Life cycle of react class based components
-
+componentDidMount
 //This will get called once component mounted - usecase of this is to do API calls - Because of better UX. i.e. loading shimmer UI and then load API calls
 componentDidMount(){
 
+}
+Parent <-> child 'componentDidMount' calling sequence as below;
+
+Parent constructor called
+parent render called
+child constructor called
+child render called
+Child did mount called
+Parent did mount called
+
+Part 05:
+What if parent component has multiple child class? - React will do the batching of all child class render phase and then batch the child class commit phase to make it fast
+
+--- Batching - Render phase start ---
+Parent constructor called
+parent render called
+First Child constructor called
+First child render called
+Second Child constructor called
+Second child render called
+--- Batching - Render phase end ---
+
+--- Batching - commit phase start ---
+First Child did mount called
+Second Child did mount called
+Parent did mount called
+--- Batching - commit phase end ---
+
+---
+
+Refer react life cycle diagrams
+
+React has two phases:
+
+1 - Render phase
+2 - Commit phase
+
+In React, the render phase and the commit phase are key stages in the process of updating the user interface.
+
+Render Phase:
+
+- In the render phase, React determines what changes need to be made to the virtual DOM based on updates to component props or state.
+
+- During this phase, React constructs a new virtual DOM representation of the UI by calling the render() method of each component.
+
+- The render phase is where reconciliation occurs, which involves comparing the new virtual DOM with the previous one to identify the minimal set of changes needed to update the UI.
+
+Commit Phase:
+
+- In the commit phase, React applies the changes identified during the render phase to the actual DOM.
+
+- This phase involves making the necessary updates to the real DOM to reflect the changes made in the virtual DOM.
+
+- React optimizes this process by batching DOM updates and performing them in a single pass to minimize browser reflows and improve performance.
+
+- After the commit phase, the updated UI is visible to the user.
+
+It's important to note that React's reconciliation algorithm and the separation of render and commit phases are key factors in React's performance and ability to efficiently update the UI. By minimizing the number of actual DOM manipulations and optimizing the process of applying changes, React is able to provide a smooth and responsive user experience.
+
+Part 06:
+How to do make API calls inside class based component
+async componentDidMount(){
+let fetchAPI = await fetch();
+fetchAPI = await fetchAPI.json()
+}
+According to react lifecycle, it executes componentDidMount after component rendered
+
+componentDidUpdate(){ -- It will be executed once actual DOM rendered
+
+}
+
+componentWillUnMount(){ -- It will get called once before going to get unmounted
+
+}
+
+useEffect({
+console.log('called after first render');
+return ()=>{
+console.log('called just before unmounting the component');
+}
+},[])
+
+---
+
+Part 07: Depth explanation of class components
+
+why can't we use async keyword with useEffect()?
+In functional components, you can use useEffect() to achieve a similar effect, but you cannot mark it as async. This is because useEffect() doesn't directly support async/await syntax within its definition. However, you can define an async function inside useEffect() and call it immediately.
+
+Ep 09: Optimizing our app:
+
+Part 01:
+Distributing the code into smaller pieces of module, makes the code reusable, testable and maintainable.
+
+Part 02:
+Custom hooks
+
+Part 03:
+Project idea for custom hooks and share as a contribution:
+useLocalStorage
+useSessionStorage
+
+Check online or offline custom hooks:
+import { useEffect, useState } from "react";
+const useCheckInternetOnline = () => {
+let [onlineStatus, setOnlineStatus] = useState(true);
+useEffect(() => {
+window.addEventListener("offline", () => {
+setOnlineStatus(false);
+});
+window.addEventListener("online", () => {
+setOnlineStatus(true);
+});
+}, []);
+
+return onlineStatus;
+};
+export default useCheckInternetOnline;
+
+Part 04:
+Follow the conventions, like use 'use' before custom hooks, components in caps, try implementing the linting
+
+Part 05:
+To build large scale application, it is mandatory to chunk the code to load when it is required. It is also called as 'Lazy Loading' or 'On demand loading' or 'Dynamic import' or 'Dynamic Bundling' or 'Code splitting' or 'Chunking'.
+
+import {lazy} from 'react';
+
+const Grocery = lazy(()=>import("./components/Grocery"));
+
+{
+path:/grocery,
+element:<Suspense fallback={<h1>Loading...</h1>}><Grocery/></Suspense>
 }

@@ -1,10 +1,12 @@
 import RestroCard from "./RestroCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import useCheckInternetOnline from "../utils/useCheckInternetOnline";
 const Body = () => {
   let [restroDetails, setRestroDetails] = useState([]);
   let [filteredRestroDetails, setFilteredRestroDetails] = useState([]);
   let [searchText, setSearchText] = useState("");
+  const internetaccess = useCheckInternetOnline();
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,7 +23,9 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
+  if (!internetaccess) {
+    return <h1>Internet offline</h1>;
+  }
   return restroDetails.length === 0 ? (
     <Shimmer />
   ) : (
