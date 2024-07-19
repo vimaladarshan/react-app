@@ -6,7 +6,6 @@ import Footer from "./src/Footer";
 import Error from "./src/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./src/About";
-import Contact from "./src/Contact";
 import RestroMenu from "./src/RestroMenu";
 const AppLayout = () => (
   <>
@@ -16,6 +15,8 @@ const AppLayout = () => (
   </>
 );
 const Grocery = lazy(() => import("./src/Grocery"));
+const Contact = lazy(() => import("./src/Contact"));
+const Location = lazy(() => import("./src/Location"));
 
 const appRouter = createBrowserRouter([
   {
@@ -24,12 +25,27 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Body /> },
       { path: "/aboutus", element: <About /> },
-      { path: "/contactus", element: <Contact /> },
+      {
+        path: "/contactus",
+        element: (
+          <Suspense fallback={<h1>Loading..</h1>}>
+            <Contact />
+          </Suspense>
+        ),
+      },
       {
         path: "/grocery",
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
             <Grocery />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/location",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Location />
           </Suspense>
         ),
       },

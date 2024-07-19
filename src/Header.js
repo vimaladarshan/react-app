@@ -6,10 +6,10 @@ const Header = () => {
   const [btnName, setbtnName] = useState("Login");
   const checkOnline = useCheckInternetOnline();
   return (
-    <div className="header">
-      <img className="logo" src={LOGO_URL}></img>
-      <div className="nav-bar">
-        <ul>
+    <div className="flex justify-between shadow-lg">
+      <img className="h-28 w-40" src={LOGO_URL}></img>
+      <div className="flex items-center">
+        <ul className="flex space-x-8 px-4 last:pb-0">
           <li>{checkOnline ? "✅ Online" : "🔴 Offline"}</li>
           <li>
             <Link to="/">Home</Link>

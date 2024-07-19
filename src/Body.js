@@ -34,11 +34,13 @@ const Body = () => {
         <input
           type="text"
           value={searchText}
+          className="border-2 border-grey m-2"
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <button
+          className="w-32 bg-orange-500 mx-2 text-white rounded-md"
           onClick={() => {
             restroDetails = restroDetails.filter((res) => {
               return res.info.name
@@ -51,7 +53,7 @@ const Body = () => {
           Search
         </button>
         <button
-          className="restro-btn"
+          className="w-60 bg-orange-500 mx-2 text-white rounded-md"
           onClick={() => {
             restroDetails = restroDetails.filter((res) => {
               return res.info.avgRating > 4.4;
@@ -63,7 +65,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="restro-container">
+      <div className="grid grid-cols-4 gap-4">
         {filteredRestroDetails.map((restaurant) => (
           <RestroCard
             key={restaurant.info.id}

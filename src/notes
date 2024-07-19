@@ -1,6 +1,6 @@
 Let's get hooked
 
-UI update based on varaible value changes. It is not possible with normal javascript varaible.
+UI update based on variable value changes. It is not possible with normal javascript variable.
 
 - To make it possible, we require super powerful variable called 'state variable'
 
@@ -233,7 +233,7 @@ class ComponentName extends React.Component{
 constructor(props){
 super(props);
 }
-let {inputparams} = this.props
+let {inputparams} = this.props;
 render(){
 return (<div>
 
@@ -404,3 +404,20 @@ const Grocery = lazy(()=>import("./components/Grocery"));
 path:/grocery,
 element:<Suspense fallback={<h1>Loading...</h1>}><Grocery/></Suspense>
 }
+
+Ep 10: jo dikhta hai, vo bikta hai - To improve the view of application
+part 01:
+Way of writing the css:
+css
+Sass
+Scss
+styled components - Mostly used in big companies
+material UI
+Bootstrap
+Chakra UI
+Ant design - world's second most popular react UI framework
+Tailwind css
+
+Part 02:
+Tailwind css:
+cofigure tailwind css into the project
