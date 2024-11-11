@@ -421,3 +421,45 @@ Tailwind css
 Part 02:
 Tailwind css:
 cofigure tailwind css into the project
+
+---
+
+Episode 11: Data is the new oil
+
+Part 01: Higher order Components
+
+Higher order component is a function which takes a component and returns a component.
+
+Higher order component is basically takes a component as a input and enhances the component by adding extra features to that component returns it back
+
+Component: <Restrocard>
+
+HOC : <Restrocardpromoted>
+
+EP 11: 03
+Lifting the state up in react : played with collapse of child component by providing it to control the parent component
+
+---
+
+Props drilling
+
+useContext
+
+createContext
+
+context.provider
+
+override the context using context.provider with value
+
+---
+
+Episode 12:
+
+Redux
+
+Redux and React are different libraries
+other library - Zustand
+
+when a event is triggered like clicking on add button, dispatch an action to call the function reducer to update the data to the slice in redux store.
+
+To read the data from the store, selector is being used (it is subscribing the store)

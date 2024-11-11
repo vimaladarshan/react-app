@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestroMenuDetails from "../utils/useRestroMenuDetails";
+import RestroCategory from "./RestroCategory";
 const RestroMenu = () => {
   let inputParams = useParams();
   inputParams = inputParams.resid;
+  const [isDivExpanded, setIsDivExpanded] = useState();
   /**
    * custom hooks for fetching the data
    */
@@ -11,28 +14,19 @@ const RestroMenu = () => {
   let resHotelDetails = restroResults?.hotelData;
   let resMenuDetails = restroResults?.restroData;
   return (
-    <>
-      <h1>{resHotelDetails?.name}</h1>
-      {resMenuDetails?.map((res) => (
-        <>
-          <h2>{res?.card?.card?.title}</h2>
-          <ul>
-            {Array.isArray(res?.card?.card?.itemCards) &&
-              res?.card?.card?.itemCards?.map((resCards) => {
-                let resCardsInfo = resCards?.card?.info;
-                let price = resCardsInfo.price / 100;
-                return (
-                  <>
-                    <li>
-                      {resCardsInfo.name} - Rs.{price}
-                    </li>
-                  </>
-                );
-              })}
-          </ul>
-        </>
+    <div className="flex flex-col items-center">
+      <div className="w-[800px] flex">
+        <div className="text-[24px] font-[800]">{resHotelDetails?.name}</div>
+      </div>
+      {resMenuDetails?.map((res, index) => (
+        <RestroCategory
+          key={index}
+          res={res}
+          isDivExpanded={index === isDivExpanded ? true : false}
+          setShowStatus={() => setIsDivExpanded(index)}
+        />
       ))}
-    </>
+    </div>
   );
 };
 export default RestroMenu;

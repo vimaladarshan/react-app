@@ -1,4 +1,4 @@
-import RestroCard from "./RestroCard";
+import RestroCard, { withOfferLabel } from "./RestroCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import useCheckInternetOnline from "../utils/useCheckInternetOnline";
@@ -7,10 +7,10 @@ const Body = () => {
   let [filteredRestroDetails, setFilteredRestroDetails] = useState([]);
   let [searchText, setSearchText] = useState("");
   const internetaccess = useCheckInternetOnline();
+  const RestroCardWithPromotions = withOfferLabel(RestroCard);
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0826802&lng=80.2707184&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -64,14 +64,21 @@ const Body = () => {
           Top Rated restaurants
         </button>
       </div>
-
       <div className="grid grid-cols-4 gap-4">
-        {filteredRestroDetails.map((restaurant) => (
-          <RestroCard
-            key={restaurant.info.id}
-            restroListData={restaurant.info}
-          />
-        ))}
+        {filteredRestroDetails.map((restaurant) => {
+          return restaurant?.info?.aggregatedDiscountInfoV3?.header &&
+            restaurant?.info?.aggregatedDiscountInfoV3?.subHeader != "" ? (
+            <RestroCardWithPromotions
+              key={restaurant.info.id}
+              restroListData={restaurant.info}
+            />
+          ) : (
+            <RestroCard
+              key={restaurant.info.id}
+              restroListData={restaurant.info}
+            />
+          );
+        })}
       </div>
     </div>
   );
