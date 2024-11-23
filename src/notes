@@ -463,3 +463,24 @@ other library - Zustand
 when a event is triggered like clicking on add button, dispatch an action to call the function reducer to update the data to the slice in redux store.
 
 To read the data from the store, selector is being used (it is subscribing the store)
+
+---
+
+Steps to impelement store
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+  create appStore.js
+  import {configureStore} from 'redux/toolkit'
+- Connect our store to our app
+  In app.js
+  import {provider} from 'react-redux'
+  <provider store={appstore}></provider>
+- Slice (cartSlice)
+  create cartSlice.js
+  import {createSlice} from redux/toolkit
+- dispatch (action)
+- Selector
+  import useSelector from react-redux
+
+---

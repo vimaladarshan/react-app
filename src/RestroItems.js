@@ -1,7 +1,13 @@
 import { IMAGE_URL } from "../utils/constants";
 import starImage from "../icons/star_347025.png";
 import { useEffect, useRef, useState } from "react";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 const RestroItems = ({ itemsInfo }) => {
+  const dispatch = useDispatch();
+  const handleAddClick = (item) => {
+    dispatch(addItem(item));
+  };
   const [isExpanded, setIsExpanded] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const descriptionRef = useRef(null);
@@ -24,8 +30,8 @@ const RestroItems = ({ itemsInfo }) => {
   let price = itemsInfo.price / 100;
   let defaultPrice = itemsInfo.defaultPrice / 100;
   let veg = itemsInfo.itemAttribute?.vegClassifier == "NONVEG" ? false : true;
-  let cloudinaryImageId = itemsInfo.imageId;
-  let ratingDetails = itemsInfo.ratings.aggregatedRating;
+  let cloudinaryImageId = itemsInfo?.imageId;
+  let ratingDetails = itemsInfo?.ratings?.aggregatedRating;
 
   return (
     <div className="h-auto w-[800px] px-1 py-4 border-solid border-y-[0.5px] border-[#9ca3af] flex justify-between">
@@ -40,7 +46,8 @@ const RestroItems = ({ itemsInfo }) => {
           )}
         </div>
         {(() => {
-          if (Object.keys(ratingDetails).length !== 0) {
+          console.log();
+          if (ratingDetails && Object.keys(ratingDetails).length !== 0) {
             return (
               <div className="mt-[12px] flex items-center">
                 <div>
@@ -70,7 +77,13 @@ const RestroItems = ({ itemsInfo }) => {
           )}
         </div>
       </div>
-      <div className="ml-[16px]">
+      <div className="ml-[16px] relative">
+        <button
+          className="w-24 bg-orange-500 opacity-80 mx-14 my-1 absolute text-white rounded-md"
+          onClick={() => handleAddClick(itemsInfo)}
+        >
+          + Add
+        </button>
         <img
           className="h-[144px] w-[156px] rounded-lg"
           alt="logo"
