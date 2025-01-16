@@ -483,4 +483,12 @@ Steps to impelement store
 - Selector
   import useSelector from react-redux
 
+immer library
+
 ---
+
+Types of testing
+
+1. Unit testing
+2. Integration testing
+3. e2e testing (End to End testing)

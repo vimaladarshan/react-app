@@ -28,7 +28,7 @@ const Header = () => {
             <Link to="/grocery">Grocery</Link>
           </li>
           <li>
-            <Link to="/cart"> Cart-{cartItems.length}</Link>
+            <Link to="/cart"> Cart ({cartItems.length})</Link>
           </li>
           <button
             className="login-btn"
