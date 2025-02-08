@@ -4,7 +4,7 @@
   "description": "namaste react",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url ./",
+    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
     "test": "jest",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
