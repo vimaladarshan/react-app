@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import starImage from "../icons/star_347025.png";
 import { IMAGE_URL } from "../utils/constants";
 //comments
 const RestroCard = (props) => {
@@ -16,7 +15,7 @@ const RestroCard = (props) => {
         ></img>
         <h3 className="mt-2">{name}</h3>
         <div className="flex mt-2">
-          <img className="h-4" src={starImage} />
+          <img className="h-4" src={require("../icons/star_347025.png")} />
           <h4 className="ml-1 text-xs">{avgRatingString}</h4>
         </div>
         <div className="text-xs mt-2">{cuisines.join(", ")}</div>

@@ -1,5 +1,4 @@
 import { IMAGE_URL } from "../utils/constants";
-import starImage from "../icons/star_347025.png";
 import { useEffect, useRef, useState } from "react";
 import { addItem } from "../utils/cartSlice";
 import { useDispatch } from "react-redux";
@@ -51,7 +50,10 @@ const RestroItems = ({ itemsInfo }) => {
             return (
               <div className="mt-[12px] flex items-center">
                 <div>
-                  <img className="h-4" src={starImage} />
+                  <img
+                    className="h-4"
+                    src={require("../icons/star_347025.png")}
+                  />
                 </div>
                 <div className="self-center">
                   {ratingDetails.rating}({ratingDetails.ratingCountV2})
