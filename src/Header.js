@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useCheckInternetOnline from "../utils/useCheckInternetOnline";
 import userContext from "../utils/userContext";
@@ -10,7 +11,7 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between shadow-lg">
-      <img className="h-28 w-40" src={require("../utils/constants")}></img>
+      <img className="h-28 w-40" src={LOGO_URL}></img>
       <div className="flex items-center">
         <ul className="flex space-x-8 px-4 last:pb-0">
           <li>{checkOnline ? "✅ Online" : "🔴 Offline"}</li>
