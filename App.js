@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Header from "./src/Header";
 import Body from "./src/Body";
 import Footer from "./src/Footer";
-import Error from "./src/Error";
+import ErrorBoundary from "./src/ErrorBoundary";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./src/About";
 import RestroMenu from "./src/RestroMenu";
@@ -72,7 +72,7 @@ const appRouter = createBrowserRouter([
       { path: "/restaurant/:resid", element: <RestroMenu /> },
       { path: "/cart", element: <Cart /> },
     ],
-    errorElement: <Error />,
+    errorElement: <ErrorBoundary />,
   },
 ]);
 
