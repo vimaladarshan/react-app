@@ -1,0 +1,2 @@
+var e;(0,(e=("undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:{}).parcelRequire94c2).register)("1jpx9",function(n,o){Object.defineProperty(n.exports,"__esModule",{value:!0,configurable:!0}),Object.defineProperty(n.exports,"default",{get:function(){return t},set:void 0,enumerable:!0,configurable:!0});var r=e("cc6u1"),t=function(){return/*#__PURE__*/(0,r.jsx)(r.Fragment,{children:/*#__PURE__*/(0,r.jsx)("h1",{children:"Contact us page"})})}});
+//# sourceMappingURL=Contact.b232b387.js.map
